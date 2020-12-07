@@ -1,0 +1,92 @@
+.chat {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	.messages {
+		height: 80%;
+		overflow: auto;
+		background-color: rgba($color: #0ff, $alpha: 0.4);
+		width: 100%;
+		position: absolute;
+		bottom: 4rem;
+		font-size: 1.001rem;
+
+		button {
+			position: fixed;
+			right: 1.5rem;
+			top: 1.5rem;
+			height: 2rem;
+			width: 2rem;
+			border-radius: 50%;
+			padding: auto;
+			span {
+				display: block;
+				height: 0.6rem;
+				width: 0.6rem;
+				border: 0;
+
+				border-bottom: 1px #000 solid;
+				border-right: 1px #000 solid;
+
+				transform: rotate(45deg);
+			}
+		}
+	}
+
+	form {
+		display: flex;
+		justify-content: space-evenly;
+
+		background-color: rgba($color: #000000, $alpha: 0.1);
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 2rem;
+		padding: 1rem 0;
+	}
+	input {
+		width: 100%;
+		height: 1.5rem;
+		border: 0;
+		background-color: transparent;
+		box-shadow: 0.1;
+		border-bottom: 1px rgba($color: #000000, $alpha: 0.5) solid;
+		&::placeholder {
+			margin: 0.2rem;
+			color: rgba($color: #000000, $alpha: 0.5);
+		}
+		&:hover {
+			border-bottom: 1px rgba($color: #000, $alpha: 1) solid;
+			&::placeholder {
+				color: rgba($color: #000, $alpha: 1);
+			}
+		}
+		&:focus {
+			border-bottom: 1px rgba($color: #00f, $alpha: 1) solid;
+			&::placeholder {
+				color: rgba($color: #00f, $alpha: 1);
+			}
+		}
+	}
+	.input {
+		display: flex;
+		flex-direction: column;
+		span {
+			color: red;
+		}
+	}
+
+	button {
+		background-color: transparent;
+		border-radius: 0.2rem;
+		padding: 0px 0.6rem;
+		margin: 0;
+		border: 0;
+		box-shadow: 1px 0px 3px rgba($color: #000000, $alpha: 0.3);
+		&:hover,
+		&:focus {
+			box-shadow: 2px 2px 5px rgba($color: #000000, $alpha: 0.7);
+		}
+	}
+}
