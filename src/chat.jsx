@@ -4,7 +4,6 @@ import {
 	InMemoryCache,
 	ApolloProvider,
 	gql,
-	useQuery,
 	useMutation,
 	useSubscription,
 } from "@apollo/client";
@@ -12,14 +11,14 @@ import "./chat.scss";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
 const link = new WebSocketLink({
-	uri: `ws://localhost:4000/`,
+	uri: `wss://nonymous-chat-server.herokuapp.com/`,
 	options: {
 		reconnect: true,
 	},
 });
 const client = new ApolloClient({
 	link,
-	uri: "http://localhost:4000/",
+	uri: "https://nonymous-chat-server.herokuapp.com/",
 	cache: new InMemoryCache(),
 	onError: ({ networkError, graphQLErrors }) => {
 		console.log("graphQLErrors", graphQLErrors);
@@ -116,32 +115,32 @@ const Chat = () => {
 							padding: ".5rem",
 						}}
 					>
-						<span
-							style={{
-								display: user === messageUser ? "none" : "",
-								padding: "1rem",
-								backgroundColor: "rgba(0,0,0,0.1)",
-								margin: "0px 0.5rem",
-								borderRadius: ".5rem",
-								height: "max-content",
-								width: "3rem",
-							}}
-						>
-							{messageUser}
-						</span>
-						<span
+						<div
 							style={{
 								backgroundColor: user === messageUser ? "green" : "yellow",
 								color: user === messageUser ? "yellow" : "green",
-								padding: "1rem",
 								order: user === messageUser ? "1" : "2",
-								borderRadius: ".5rem",
-								maxWidth: "80vw",
-								overflow: "auto",
+								borderTopLeftRadius: user === messageUser ? "0.5rem" : "0",
+								borderTopRightRadius: user !== messageUser ? "0.5rem" : "0",
 							}}
+							className="message-card"
 						>
-							{content}
-						</span>
+							<span
+								style={{
+									display: user === messageUser ? "none" : "",
+								}}
+								className="message-user"
+							>
+								{messageUser}
+							</span>
+							<span
+								style={{
+									padding: ".5rem",
+								}}
+							>
+								{content}
+							</span>
+						</div>
 					</div>
 				))}
 			</>
@@ -171,27 +170,26 @@ const Chat = () => {
 	};
 
 	return (
-		<div>
-			{loading && <p>Loading...</p>}
-			{error && <p>error...</p>}
-			{data && (
-				<div className="chat">
-					<div className="title">
-						<h1>Anonymous</h1>
-						<h3>fell free to chat, nobody know it is you</h3>
-					</div>
+		<>
+			<div className="title">
+				<h1>nonymous</h1>
+				<h3>fell free to say what ever you want</h3>
+			</div>
 
-					<div className="messages" ref={box}>
-						<button
-							onClick={() => {
-								scrollBottom(box.current);
-							}}
-						>
-							<span></span>
-						</button>
-						<Message user={state.name} />
-					</div>
-
+			<div className="chat">
+				<div className="messages" ref={box}>
+					<button
+						onClick={() => {
+							scrollBottom(box.current);
+						}}
+					>
+						<span></span>
+					</button>
+					{loading && <p>Loading...</p>}
+					{error && <p>error...</p>}
+					{data && <Message user={state.name} />}
+				</div>
+				<div className="inputBar">
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
@@ -245,8 +243,8 @@ const Chat = () => {
 						</button>
 					</form>
 				</div>
-			)}
-		</div>
+			</div>
+		</>
 	);
 };
 
