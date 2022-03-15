@@ -1,6 +1,7 @@
 .message {
-    max-width: 80%;
-
+    max-width: 75%;
+    filter: drop-shadow(2px 4px 6px #3b3b3b86);
+    margin: 1rem;
     .username,
     .content {
         border-radius: 1.5rem;
