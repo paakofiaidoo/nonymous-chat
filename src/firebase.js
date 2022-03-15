@@ -22,6 +22,6 @@ const app = initializeApp(firebaseConfig);
 //     logEvent(analytics, opt);
 // }
 
-const database = getDatabase(app);
+const db = getDatabase(app);
 
-export { database };
+export { db };
