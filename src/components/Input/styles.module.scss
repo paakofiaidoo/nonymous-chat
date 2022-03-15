@@ -10,13 +10,14 @@
         border-radius: 2rem;
         height: 3rem;
         padding: 1rem;
-        justify-content: space-around;
+        padding-right: 0;
+        justify-content: space-between;
         align-items: center;
     }
 
     &Field {
         position: relative;
-        width: 100%;
+        width: 75%;
         height: 100%;
         padding: 0;
         margin: 0;
@@ -30,29 +31,67 @@
         letter-spacing: 0.1rem;
         cursor: text;
         transition: all 0.3s ease-in-out;
+        border-bottom: 1px solid #000;
         &:focus {
             outline: none;
-            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+            border-bottom: 3px solid #000;
         }
         &::placeholder {
             color: #fff;
         }
     }
     .send {
-        background-color: #fff;
-        transform: rotate(90deg);
-        height: 2.5rem;
-        width: 2.5rem;
-        border-radius: 50%;
-        padding: 0.3rem;
-        img {
-            width: 1.5rem;
-            height: 1.5rem;
+        /* From cssbuttons.io by @adamgiebl */
+
+        font-family: inherit;
+        font-size: 20px;
+        background: rgba(65, 105, 225, 0.6);
+        color: white;
+        padding: 0.7rem;
+        padding-left: 0.9rem;
+        padding-right: 2rem;
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.2s;
+        span {
+            display: block;
+            margin-left: 0.3rem;
+            transition: all 0.3s ease-in-out;
         }
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        &:hover {
-            background-color: rgb(230, 230, 176);
+
+        svg {
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover .svgWrapper {
+            animation: fly-1 0.6s ease-in-out infinite alternate;
+        }
+
+        &:hover svg {
+            transform: translateX(1.2rem) rotate(45deg) scale(1.1);
+        }
+
+        &:hover span {
+            transform: translateX(5rem);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes fly-1 {
+            from {
+                transform: translateY(0.1rem);
+            }
+
+            to {
+                transform: translateY(-0.1rem);
+            }
         }
     }
 }
