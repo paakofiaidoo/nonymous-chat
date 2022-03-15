@@ -36,6 +36,9 @@ body {
     color: #000;
     transition: all 250ms ease-in-out;
 }
+iframe {
+    display: none;
+}
 div {
     display: flex;
 }
