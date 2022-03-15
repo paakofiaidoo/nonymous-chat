@@ -1,0 +1,57 @@
+.input {
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+
+    .container {
+        width: 80%;
+        background-color: rgba(153, 153, 153, 0.295);
+        border-radius: 2rem;
+        height: 3rem;
+        padding: 1rem;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &Field {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        border: none;
+        outline: none;
+        background: transparent;
+
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.1rem;
+        cursor: text;
+        transition: all 0.3s ease-in-out;
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+        }
+        &::placeholder {
+            color: #fff;
+        }
+    }
+    .send {
+        background-color: #fff;
+        transform: rotate(90deg);
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            background-color: rgb(230, 230, 176);
+        }
+    }
+}
