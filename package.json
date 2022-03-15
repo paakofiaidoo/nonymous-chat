@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.3",
+    "firebase": "^9.6.8",
     "graphql": "^15.4.0",
     "node-sass": "4.14.1",
     "react": "^16.9.0",
