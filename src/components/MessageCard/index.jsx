@@ -4,7 +4,11 @@ import styles from "./styles.module.scss";
 function MessageCard() {
     return (
         <message className={styles.message}>
-            <h3 className={styles.username}>userName</h3>
+            <div className={styles.head}>
+                <h3 className={styles.username}>userName</h3>
+                <span className={styles.time}>11:10pm</span>
+            </div>
+
             <p className={styles.content}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Pariatur perferendis tempora commodi magnam, velit enim

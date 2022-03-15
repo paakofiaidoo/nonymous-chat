@@ -7,10 +7,21 @@
         border-radius: 1.5rem;
         padding: 1rem;
     }
+    .head {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0;
+        height: max-content;
+
+        .time {
+            font-size: 0.7rem;
+            margin-left: 1rem;
+        }
+    }
     .username {
         font-weight: bold;
         font-size: 1rem;
-        margin-bottom: -0.5rem;
         width: max-content;
         background-color: yellow;
         color: #333;
