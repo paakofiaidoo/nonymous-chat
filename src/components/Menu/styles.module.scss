@@ -24,6 +24,7 @@
         .update {
             font-size: 0.5rem;
             color: #00f;
+            cursor: pointer;
         }
     }
 
@@ -37,7 +38,17 @@
 
         cursor: pointer;
         &:hover {
-            background-color: rgb(230, 230, 176);
+            // background-color: rgb(230, 230, 176);
+            animation: fly-1 0.6s ease-in-out infinite alternate;
         }
+    }
+}
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1rem);
+    }
+
+    to {
+        transform: translateY(-0.1rem);
     }
 }

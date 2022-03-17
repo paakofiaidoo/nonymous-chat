@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import style from "./styles.module.scss";
 
-function Input() {
+function Input({ name, removeUser }) {
     const [active, setActive] = useState(true);
     const onMenuClick = () => {
         setActive(!active);
@@ -17,8 +17,8 @@ function Input() {
                     </button>
                     <menu className={style.options}>
                         <div className={style.user}>
-                            <h3>name</h3>
-                            <a className={style.update}>
+                            <h3>{name}</h3>
+                            <a onClick={removeUser} className={style.update}>
                                 change username
                             </a>
                         </div>
