@@ -1,17 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./styles.module.scss";
+import { db } from "../../firebase";
+import { ref, set, push } from "firebase/database";
 
-function Input() {
+function Input({ user }) {
+    const [message, setMessage] = useState("");
+    const MessageListRef = ref(db, "messages");
+    const writeMessageData = (message) => {
+        const newMessageRef = push(MessageListRef);
+        set(newMessageRef, {
+            message,
+        });
+        return newMessageRef.key;
+    };
+
+    const send = (e) => {
+        e.preventDefault();
+        if (message.length > 0) {
+            writeMessageData({ content: message, user, date: Date() });
+            setMessage("");
+        } else {
+            alert("Please enter a message");
+        }
+    };
     return (
-        <div className={style.input}>
+        <form className={style.input} onSubmit={send}>
             <div className={style.container}>
                 <input
                     className={style.inputField}
                     type="text"
                     placeholder="Type a message..."
+                    value={message}
+                    onChange={(e) => {
+                        setMessage(e.target.value);
+                    }}
                 />
 
-                <button className={style.send}>
+                <button type="submit" className={style.send}>
                     <div className={style.svgWrapper}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +54,7 @@ function Input() {
                     <span>Send</span>
                 </button>
             </div>
-        </div>
+        </form>
     );
 }
 

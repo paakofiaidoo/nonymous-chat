@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 
 function MessageCard() {
     return (
-        <message className={styles.message}>
+        <div className={styles.message}>
             <div className={styles.head}>
                 <h3 className={styles.username}>userName</h3>
                 <span className={styles.time}>11:10pm</span>
@@ -16,7 +16,7 @@ function MessageCard() {
                 obcaecati voluptate? Debitis pariatur voluptas eligendi
                 cupiditate similique.
             </p>
-        </message>
+        </div>
     );
 }
 
