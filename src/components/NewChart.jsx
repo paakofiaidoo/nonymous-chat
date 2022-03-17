@@ -12,13 +12,12 @@ function NewChart() {
         hasUser: false,
     });
     const userListRef = ref(db, "users");
-    const writeUserData = (userId, name) => {
+    const writeUserData = (name) => {
         const newUserRef = push(userListRef);
         set(newUserRef, {
             username: name,
-        }).then((test) => {
-            console.log(test);
-        })
+        });
+        return newUserRef.key;
     };
     const removeUser = () => {
         setState({
@@ -28,12 +27,15 @@ function NewChart() {
         localStorage.removeItem("user");
     };
     const setUser = (name) => {
+        const user = {
+            id: writeUserData(name),
+            name,
+        };
         setState({
-            user: { name },
+            user,
             hasUser: true,
         });
-        localStorage.setItem("user", JSON.stringify({ name }));
-        writeUserData(1, name);
+        localStorage.setItem("user", JSON.stringify(user));
     };
 
     useEffect(() => {
@@ -73,7 +75,7 @@ function NewChart() {
     }
 
     return (
-        <layout className={style.layout}>
+        <div className={style.layout}>
             <header className={style.head}>
                 <h2>Nonymous</h2>
                 <Menu {...{ ...state.user, removeUser }} />
@@ -81,9 +83,9 @@ function NewChart() {
 
             <main>
                 <Messages></Messages>
-                <Input></Input>
+                <Input {...{ user: state.user }}></Input>
             </main>
-        </layout>
+        </div>
     );
 }
 
