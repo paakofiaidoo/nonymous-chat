@@ -2,7 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import MessageCard from "../MessageCard";
 import styles from "./styles.module.scss";
 import { db } from "../../firebase";
-import { ref, onChildAdded, onValue, get, child } from "firebase/database";
+import {
+    ref,
+    onValue,
+    query,
+    orderByChild,
+    limitToLast,
+} from "firebase/database";
 import Loader from "../Loader";
 
 function Messages({ user }) {
@@ -11,7 +17,7 @@ function Messages({ user }) {
         isLoading: true,
     });
     const messagesBox = useRef();
-    const MessageListRef = ref(db, "messages");
+    const MessageListRef = query(ref(db, "messages"), limitToLast(100));
     useEffect(() => {
         onValue(MessageListRef, (snapshot) => {
             setMessages(Object.values(snapshot.val()));
