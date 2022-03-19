@@ -40,7 +40,7 @@ function NewChart() {
 
     useEffect(() => {
         //check if userdata is in localstorage
-        if (JSON.parse(localStorage.getItem("user")).name) {
+        if (JSON.parse(localStorage.getItem("user"))?.name) {
             setState({
                 ...state,
                 user: JSON.parse(localStorage.getItem("user")),
@@ -82,7 +82,7 @@ function NewChart() {
             </header>
 
             <main>
-                <Messages></Messages>
+                <Messages user={state.user}></Messages>
                 <Input {...{ user: state.user }}></Input>
             </main>
         </div>
