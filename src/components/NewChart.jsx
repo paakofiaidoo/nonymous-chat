@@ -61,13 +61,24 @@ function NewChart() {
         };
         return (
             <div className={style.container}>
-                <h1>Create a username</h1>
+                <h1 style={{ textAlign: "center" }}>
+                    Welcome to Nonymous
+                    <p style={{ fontSize: "1rem", marginBottom: "2rem" }}>
+                        fell free to say whatever you want, know one knows it is
+                        you
+                    </p>
+                </h1>
+                <h2>Create a username</h2>
+
                 <form onSubmit={onSubmit}>
                     <input
                         type="text"
                         name="name"
                         placeholder="Enter a username"
                     />
+                    <span>
+                        Dont Use Your Real Name, it defeat the idea of anonymous
+                    </span>
                     <button type="submit">Submit</button>
                 </form>
             </div>
@@ -77,7 +88,13 @@ function NewChart() {
     return (
         <div className={style.layout}>
             <header className={style.head}>
-                <h2>Nonymous</h2>
+                <h2>
+                    Nonymous
+                    <p style={{ fontSize: "0.8rem" }}>
+                        fell free to say whatever you want, know one knows it is
+                        you
+                    </p>
+                </h2>
                 <Menu {...{ ...state.user, removeUser }} />
             </header>
 
