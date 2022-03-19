@@ -1,0 +1,164 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+.f-c {
+    display: flex;
+    flex-direction: column;
+}
+body {
+    @extend .f-c;
+    width: 100vw;
+    height: 100%;
+    max-width: 100%;
+    font-family: sans-serif;
+    background-color: #eee;
+    color: #000;
+    transition: all 250ms ease-in-out;
+}
+iframe {
+    // display: none;
+}
+div {
+    display: flex;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+button {
+    border: 0px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.button {
+    text-transform: uppercase;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 0.7rem;
+    border: 0px;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: 1rem;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: auto;
+    padding: 1rem;
+    img {
+        width: 80%;
+    }
+    .title {
+        color: #000;
+    }
+}
+.navbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: min-content;
+    .links {
+        justify-content: space-between;
+        li {
+            margin: 1rem;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        .links {
+            display: none;
+        }
+    }
+}
+.hero {
+    display: flex;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.section {
+    height: 100%;
+    width: 100%;
+    &-title {
+        text-align: center;
+        font-size: 1.9rem;
+        padding: 1rem;
+        color: #333;
+    }
+}
+.more {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    &::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: #fec200;
+        position: relative;
+        border-radius: 50%;
+        margin-right: 0.2rem;
+    }
+}
+.context {
+    color: #fec200;
+    font-weight: 200;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid darken(#fff, 10);
+}

@@ -1,0 +1,13 @@
+.loader {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    svg {
+        transform: scale(2);
+        path,
+        rect {
+            fill: #ff6700;
+        }
+    }
+}

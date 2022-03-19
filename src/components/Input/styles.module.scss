@@ -1,0 +1,106 @@
+.input {
+    justify-content: center;
+    width: 100%;
+    height: 7vh;
+    align-items: center;
+    display: flex;
+
+    .container {
+        width: 90%;
+        // background-color: rgba(153, 153, 153, 0.295);
+        border-radius: 2rem;
+        height: 3rem;
+        padding: 1rem;
+        padding-right: 0;
+        border: 1px solid #999;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        margin: auto;
+        background: #e8e8e8;
+        border: 1px solid #e8e8e8;
+        transition: all 0.3s;
+        box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    }
+
+    &Field {
+        position: relative;
+        width: 75%;
+        // height: 100%;
+        padding: 0;
+        margin: 0;
+        // margin-bottom: -0.9rem;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.1rem;
+        cursor: text;
+        transition: all 0.3s ease-in-out;
+        // border-bottom: 1px solid #999;
+
+        &:focus {
+            outline: none;
+            // border-bottom: 1px solid #999;
+        }
+        &::placeholder {
+            color: #999;
+        }
+    }
+    .send {
+        /* From cssbuttons.io by @adamgiebl */
+
+        font-family: inherit;
+        font-size: 20px;
+        background: rgba(65, 105, 225, 0.6);
+        color: white;
+        padding: 0.7rem;
+        padding-left: 0.9rem;
+        padding-right: 2rem;
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 16px;
+
+        transition: all 0.2s;
+        span {
+            display: block;
+            margin-left: 0.3rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        svg {
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover .svgWrapper {
+            animation: fly-1 0.6s ease-in-out infinite alternate;
+        }
+
+        &:hover svg {
+            transform: translateX(1.2rem) rotate(45deg) scale(1.1);
+        }
+
+        &:hover span {
+            transform: translateX(5rem);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes fly-1 {
+            from {
+                transform: translateY(0.1rem);
+            }
+
+            to {
+                transform: translateY(-0.1rem);
+            }
+        }
+    }
+}

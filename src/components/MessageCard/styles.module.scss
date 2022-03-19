@@ -1,0 +1,49 @@
+.message {
+    max-width: 75%;
+    width: max-content;
+    filter: drop-shadow(2px 4px 6px #3b3b3b86);
+    margin: 1rem;
+    flex-direction: column;
+
+    .username,
+    .content {
+        border-radius: 1.5rem;
+        padding: 1rem;
+        word-wrap: break-word;
+    }
+    .head {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0;
+        height: max-content;
+
+        .time {
+            font-size: 0.7rem;
+            margin-left: 1rem;
+        }
+    }
+    .username {
+        font-weight: bold;
+        font-size: 1rem;
+        width: max-content;
+        background-color: yellow;
+        color: #333;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .content {
+        background-color: #333;
+        color: #ff0;
+        border-top-left-radius: 0;
+    }
+}
+.me {
+    margin-left: auto;
+    .username {
+        background-color: #ff6700;
+    }
+    .content {
+        color: #f5a672;
+    }
+}
