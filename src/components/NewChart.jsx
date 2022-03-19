@@ -3,8 +3,11 @@ import Menu from "./Menu";
 import Input from "./Input";
 import Messages from "./Messages";
 import style from "../styles/layout.module.scss";
-import { db } from "../firebase";
+import { db, analytics, logEventFun } from "../firebase";
+
 import { ref, set, push } from "firebase/database";
+import "firebase/analytics";
+import { setUserId } from "firebase/analytics";
 
 function NewChart() {
     const [state, setState] = useState({
@@ -17,6 +20,8 @@ function NewChart() {
         set(newUserRef, {
             username: name,
         });
+        logEventFun("new");
+        setUserId(analytics, `${newUserRef.key}`);
         return newUserRef.key;
     };
     const removeUser = () => {
@@ -25,6 +30,7 @@ function NewChart() {
             hasUser: false,
         });
         localStorage.removeItem("user");
+        logEventFun("user removed");
     };
     const setUser = (name) => {
         const user = {
@@ -38,7 +44,10 @@ function NewChart() {
         localStorage.setItem("user", JSON.stringify(user));
     };
 
+    // analytics.logEvent(logEventFun("page_view", { page: "newchart" }));
+
     useEffect(() => {
+        console.log(analytics && true);
         //check if userdata is in localstorage
         if (JSON.parse(localStorage.getItem("user"))?.name) {
             setState({

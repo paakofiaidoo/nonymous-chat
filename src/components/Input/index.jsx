@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./styles.module.scss";
-import { db } from "../../firebase";
+import { db, logEventFun } from "../../firebase";
 import { ref, set, push } from "firebase/database";
 
 function Input({ user }) {
@@ -19,6 +19,7 @@ function Input({ user }) {
         if (message.length > 0) {
             writeMessageData({ content: message, user, date: Date() });
             setMessage("");
+            logEventFun("sent message");
         } else {
             alert("Please enter a message");
         }

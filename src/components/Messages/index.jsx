@@ -25,7 +25,6 @@ function Messages({ user }) {
         });
     }, []);
     const scrollBottom = (e) => {
-        console.log(e.scrollTop, e.scrollHeight, e.clientHeight);
         e.scrollTop = e.scrollHeight;
     };
 

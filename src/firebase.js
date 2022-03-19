@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-// import { getAnalytics, logEvent } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
 // import { getFirestore } from 'firebase/firestore'
 
@@ -19,12 +19,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = analytics.isSupported() ? getAnalytics(app) : null;
 
-// const analytics = getAnalytics(app)
+const analytics = getAnalytics(app)
 // console.log(analytics);
-// const logEventFun = (opt) => {
-//     logEvent(analytics, opt);
-// }
+const logEventFun = (opt) => {
+    logEvent(analytics, opt);
+}
 
 const db = getDatabase(app);
 // const dbf = getFirestore(app)
-export { db };
+export { db, analytics, logEventFun };
