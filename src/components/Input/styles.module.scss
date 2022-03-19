@@ -17,6 +17,10 @@
         align-items: center;
         overflow: hidden;
         margin: auto;
+        background: #e8e8e8;
+        border: 1px solid #e8e8e8;
+        transition: all 0.3s;
+        box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
     }
 
     &Field {
@@ -36,6 +40,7 @@
         cursor: text;
         transition: all 0.3s ease-in-out;
         // border-bottom: 1px solid #999;
+
         &:focus {
             outline: none;
             // border-bottom: 1px solid #999;
