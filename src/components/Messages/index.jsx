@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { db } from "../../firebase";
 import { ref, onChildAdded, onValue, get, child } from "firebase/database";
 
-function Messages() {
+function Messages({ user }) {
     const [messages, setMessages] = useState([]);
     const [state, setState] = useState({
         isLoading: false,
@@ -31,7 +31,12 @@ function Messages() {
     return (
         <div className={styles.messages} ref={messagesBox}>
             {messages.map((message, i) => {
-                return <MessageCard {...message} key={i} />;
+                return (
+                    <MessageCard
+                        {...{ ...message, me: user.id === message.user.id }}
+                        key={i}
+                    />
+                );
             })}
         </div>
     );

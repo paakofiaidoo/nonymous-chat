@@ -4,10 +4,12 @@
     filter: drop-shadow(2px 4px 6px #3b3b3b86);
     margin: 1rem;
     flex-direction: column;
+
     .username,
     .content {
         border-radius: 1.5rem;
         padding: 1rem;
+        word-wrap: break-word;
     }
     .head {
         display: flex;
@@ -35,4 +37,7 @@
         color: #ff0;
         border-top-left-radius: 0;
     }
+}
+.me {
+    margin-left: auto;
 }
