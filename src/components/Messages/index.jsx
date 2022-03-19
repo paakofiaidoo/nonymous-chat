@@ -3,18 +3,19 @@ import MessageCard from "../MessageCard";
 import styles from "./styles.module.scss";
 import { db } from "../../firebase";
 import { ref, onChildAdded, onValue, get, child } from "firebase/database";
+import Loader from "../Loader";
 
 function Messages({ user }) {
     const [messages, setMessages] = useState([]);
     const [state, setState] = useState({
-        isLoading: false,
+        isLoading: true,
     });
     const messagesBox = useRef();
     const MessageListRef = ref(db, "messages");
     useEffect(() => {
         onValue(MessageListRef, (snapshot) => {
             setMessages(Object.values(snapshot.val()));
-            setState({ ...state, isLoading: true });
+            setState({ ...state, isLoading: false });
         });
     }, []);
     const scrollBottom = (e) => {
@@ -30,14 +31,21 @@ function Messages({ user }) {
 
     return (
         <div className={styles.messages} ref={messagesBox}>
-            {messages.map((message, i) => {
-                return (
-                    <MessageCard
-                        {...{ ...message, me: user.id === message.user.id }}
-                        key={i}
-                    />
-                );
-            })}
+            {state.isLoading ? (
+                <Loader />
+            ) : (
+                messages.map((message, i) => {
+                    return (
+                        <MessageCard
+                            {...{
+                                ...message,
+                                me: user.id === message.user.id,
+                            }}
+                            key={i}
+                        />
+                    );
+                })
+            )}
         </div>
     );
 }
