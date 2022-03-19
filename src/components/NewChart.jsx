@@ -76,7 +76,13 @@ function NewChart() {
                         name="name"
                         placeholder="Enter a username"
                     />
-                    <span>
+                    <span
+                        style={{
+                            fontSize: "0.8rem",
+                            marginTop: "0.3rem",
+                            marginBottom: "1rem",
+                        }}
+                    >
                         Dont Use Your Real Name, it defeat the idea of anonymous
                     </span>
                     <button type="submit">Submit</button>
