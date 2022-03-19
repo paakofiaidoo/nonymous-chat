@@ -1,8 +1,9 @@
 .input {
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
-    height: max-content;
+    height: 7vh;
     align-items: center;
+    display: flex;
 
     .container {
         width: 90%;
@@ -15,6 +16,7 @@
         justify-content: space-between;
         align-items: center;
         overflow: hidden;
+        margin: auto;
     }
 
     &Field {

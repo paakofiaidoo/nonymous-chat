@@ -9,7 +9,7 @@ function Input({ user }) {
     const writeMessageData = (message) => {
         const newMessageRef = push(MessageListRef);
         set(newMessageRef, {
-            message,
+            ...message,
         });
         return newMessageRef.key;
     };
