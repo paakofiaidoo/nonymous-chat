@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import style from "./styles.module.scss";
 
 function Input({ name, removeUser }) {
-    const [active, setActive] = useState(true);
+    const [active, setActive] = useState(false);
     const onMenuClick = () => {
         setActive(!active);
     };
