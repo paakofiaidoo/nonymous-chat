@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import MessageCard from "../MessageCard";
 import styles from "./styles.module.scss";
+import { db } from "../../firebase";
+import { ref, onChildAdded, onValue, get, child } from "firebase/database";
 
 function Messages() {
-    let messages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const [messages, setMessages] = useState([]);
+    const [state, setState] = useState({
+        isLoading: false,
+    });
+    const messagesBox = useRef();
+    const MessageListRef = ref(db, "messages");
+    useEffect(() => {
+        onValue(MessageListRef, (snapshot) => {
+            setMessages(Object.values(snapshot.val()));
+            setState({ ...state, isLoading: true });
+        });
+    }, []);
+    const scrollBottom = (e) => {
+        console.log(e.scrollTop, e.scrollHeight, e.clientHeight);
+        e.scrollTop = e.scrollHeight;
+    };
+
+    useEffect(() => {
+        if (messagesBox.current !== null) {
+            scrollBottom(messagesBox.current);
+        }
+    });
+
     return (
-        <div className={styles.messages}>
+        <div className={styles.messages} ref={messagesBox}>
             {messages.map((message, i) => {
-                return <MessageCard key={i} />;
+                return <MessageCard {...message} key={i} />;
             })}
-            <MessageCard></MessageCard>
         </div>
     );
 }
