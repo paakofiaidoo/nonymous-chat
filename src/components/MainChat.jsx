@@ -64,10 +64,13 @@ function MainChat() {
             const name = e.target.elements.name.value;
             if (name.length === 0) {
                 alert("Please enter a username");
+            } else if (name.toLocaleLowerCase() === process.env.REACT_APP_AdminName) {
+                alert("can't use username, reserved for creator only");
             } else {
                 setUser(name);
             }
         };
+
         return (
             <div className={style.container}>
                 <div className={style.card}>
@@ -81,11 +84,7 @@ function MainChat() {
                     <h3>Create a username</h3>
 
                     <form onSubmit={onSubmit}>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Enter a username"
-                        />
+                        <input type="text" name="name" placeholder="Enter a username" />
                         <span
                             style={{
                                 fontSize: "0.8rem",
@@ -93,8 +92,7 @@ function MainChat() {
                                 marginBottom: "1rem",
                             }}
                         >
-                            Don't Use Your Real Name, it defeat the idea of
-                            anonymous
+                            Don't Use Your Real Name, it defeat the idea of anonymous
                         </span>
                         <button type="submit">Submit</button>
                     </form>
@@ -108,10 +106,7 @@ function MainChat() {
             <header className={style.head}>
                 <h2>
                     Nonymous
-                    <p style={{ fontSize: "0.8rem" }}>
-                        feel free to say whatever you want, no one knows it is
-                        you
-                    </p>
+                    <p style={{ fontSize: "0.8rem" }}>feel free to say whatever you want, no one knows it is you</p>
                 </h2>
                 <Menu {...{ ...state.user, removeUser }} />
             </header>
