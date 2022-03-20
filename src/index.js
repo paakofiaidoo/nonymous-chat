@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.scss';
-import App from './components/NewChart';
+import './styles/normalize.css'
+import App from './components/MainChat';
 
 
 ReactDOM.render(

@@ -4,26 +4,25 @@ import Input from "./Input";
 import Messages from "./Messages";
 import style from "../styles/layout.module.scss";
 import { db, analytics, logEventFun } from "../firebase";
-
-import { ref, set, push } from "firebase/database";
+// import { ref, set, push } from "firebase/database";
 import "firebase/analytics";
 import { setUserId } from "firebase/analytics";
+import { v4 as uuidv4 } from "uuid";
 
-function NewChart() {
+function MainChat() {
     const [state, setState] = useState({
         user: {},
         hasUser: false,
     });
-    const userListRef = ref(db, "users");
-    const writeUserData = (name) => {
-        const newUserRef = push(userListRef);
-        set(newUserRef, {
-            username: name,
-        });
-        logEventFun("new");
-        setUserId(analytics, `${newUserRef.key}`);
-        return newUserRef.key;
-    };
+    // const userListRef = ref(db, "users");
+    // const writeUserData = (name) => {
+    //     const newUserRef = push(userListRef);
+    //     set(newUserRef, {
+    //         username: name,
+    //     });
+
+    //     return newUserRef.key;
+    // };
     const removeUser = () => {
         setState({
             user: {},
@@ -33,18 +32,19 @@ function NewChart() {
         logEventFun("user removed");
     };
     const setUser = (name) => {
+        let id = uuidv4();
         const user = {
-            id: writeUserData(name),
+            id,
             name,
         };
+        logEventFun("new");
+        setUserId(analytics, `${id}`);
         setState({
             user,
             hasUser: true,
         });
         localStorage.setItem("user", JSON.stringify(user));
     };
-
-    // analytics.logEvent(logEventFun("page_view", { page: "newchart" }));
 
     useEffect(() => {
         console.log(analytics && true);
@@ -70,32 +70,35 @@ function NewChart() {
         };
         return (
             <div className={style.container}>
-                <h1 style={{ textAlign: "center" }}>
-                    Welcome to Nonymous
-                    <p style={{ fontSize: "1rem", marginBottom: "2rem" }}>
-                        feel free to say whatever you want, know one knows it is
-                        you
-                    </p>
-                </h1>
-                <h2>Create a username</h2>
+                <div className={style.card}>
+                    <h1 style={{ textAlign: "center" }}>
+                        Welcome to Nonymous
+                        <p style={{ fontSize: ".8rem", marginBottom: "2rem" }}>
+                            feel free to say whatever you want,
+                            <br /> no one knows it is you
+                        </p>
+                    </h1>
+                    <h2>Create a username</h2>
 
-                <form onSubmit={onSubmit}>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Enter a username"
-                    />
-                    <span
-                        style={{
-                            fontSize: "0.8rem",
-                            marginTop: "0.3rem",
-                            marginBottom: "1rem",
-                        }}
-                    >
-                        Dont Use Your Real Name, it defeat the idea of anonymous
-                    </span>
-                    <button type="submit">Submit</button>
-                </form>
+                    <form onSubmit={onSubmit}>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter a username"
+                        />
+                        <span
+                            style={{
+                                fontSize: "0.8rem",
+                                marginTop: "0.3rem",
+                                marginBottom: "1rem",
+                            }}
+                        >
+                            Don't Use Your Real Name, it defeat the idea of
+                            anonymous
+                        </span>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
         );
     }
@@ -106,14 +109,14 @@ function NewChart() {
                 <h2>
                     Nonymous
                     <p style={{ fontSize: "0.8rem" }}>
-                        feel free to say whatever you want, know one knows it is
+                        feel free to say whatever you want, no one knows it is
                         you
                     </p>
                 </h2>
                 <Menu {...{ ...state.user, removeUser }} />
             </header>
 
-            <main>
+            <main style={{ height: "100%" }}>
                 <Messages user={state.user}></Messages>
                 <Input {...{ user: state.user }}></Input>
             </main>
@@ -121,4 +124,4 @@ function NewChart() {
     );
 }
 
-export default NewChart;
+export default MainChat;
