@@ -4,6 +4,7 @@
     align-items: flex-end;
     width: 5rem;
     height: 100%;
+    z-index: 3;
 
     .options {
         flex-direction: column;
@@ -16,7 +17,6 @@
         height: max-content;
         padding: 1rem;
         padding-top: 2rem;
-        z-index: 3;
 
         .user {
             flex-direction: column;
