@@ -27,7 +27,7 @@ function Input({ user }) {
             alert("Please enter a message");
         }
     };
-    console.log(message.length, message.length > limit);
+    
     return (
         <div className={style.input}>
             <div className={style.form}>

@@ -4,26 +4,25 @@ import Input from "./Input";
 import Messages from "./Messages";
 import style from "../styles/layout.module.scss";
 import { db, analytics, logEventFun } from "../firebase";
-
-import { ref, set, push } from "firebase/database";
+// import { ref, set, push } from "firebase/database";
 import "firebase/analytics";
 import { setUserId } from "firebase/analytics";
+import { v4 as uuidv4 } from "uuid";
 
 function MainChat() {
     const [state, setState] = useState({
         user: {},
         hasUser: false,
     });
-    const userListRef = ref(db, "users");
-    const writeUserData = (name) => {
-        const newUserRef = push(userListRef);
-        set(newUserRef, {
-            username: name,
-        });
-        logEventFun("new");
-        setUserId(analytics, `${newUserRef.key}`);
-        return newUserRef.key;
-    };
+    // const userListRef = ref(db, "users");
+    // const writeUserData = (name) => {
+    //     const newUserRef = push(userListRef);
+    //     set(newUserRef, {
+    //         username: name,
+    //     });
+        
+    //     return newUserRef.key;
+    // };
     const removeUser = () => {
         setState({
             user: {},
@@ -33,10 +32,13 @@ function MainChat() {
         logEventFun("user removed");
     };
     const setUser = (name) => {
+        let id = uuidv4();
         const user = {
-            id: writeUserData(name),
+            id,
             name,
         };
+        logEventFun("new");
+        setUserId(analytics, `${id}`);
         setState({
             user,
             hasUser: true,
