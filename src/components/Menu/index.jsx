@@ -22,6 +22,12 @@ function Input({ name, removeUser }) {
                                 change username
                             </a>
                         </div>
+                        <p style={{ fontSize: ".5rem", marginTop: "0.5rem" }}>
+                            built by{" "}
+                            <a href="http://paakofiaidoo.tech">
+                                paa-kofi aidoo
+                            </a>
+                        </p>
                     </menu>
                 </>
             ) : (
