@@ -20,7 +20,7 @@ function MainChat() {
     //     set(newUserRef, {
     //         username: name,
     //     });
-        
+
     //     return newUserRef.key;
     // };
     const removeUser = () => {
@@ -70,32 +70,35 @@ function MainChat() {
         };
         return (
             <div className={style.container}>
-                <h1 style={{ textAlign: "center" }}>
-                    Welcome to Nonymous
-                    <p style={{ fontSize: "1rem", marginBottom: "2rem" }}>
-                        feel free to say whatever you want, know one knows it is
-                        you
-                    </p>
-                </h1>
-                <h2>Create a username</h2>
+                <div className={style.card}>
+                    <h1 style={{ textAlign: "center" }}>
+                        Welcome to Nonymous
+                        <p style={{ fontSize: ".8rem", marginBottom: "2rem" }}>
+                            feel free to say whatever you want,
+                            <br /> no one knows it is you
+                        </p>
+                    </h1>
+                    <h2>Create a username</h2>
 
-                <form onSubmit={onSubmit}>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Enter a username"
-                    />
-                    <span
-                        style={{
-                            fontSize: "0.8rem",
-                            marginTop: "0.3rem",
-                            marginBottom: "1rem",
-                        }}
-                    >
-                        Dont Use Your Real Name, it defeat the idea of anonymous
-                    </span>
-                    <button type="submit">Submit</button>
-                </form>
+                    <form onSubmit={onSubmit}>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter a username"
+                        />
+                        <span
+                            style={{
+                                fontSize: "0.8rem",
+                                marginTop: "0.3rem",
+                                marginBottom: "1rem",
+                            }}
+                        >
+                            Don't Use Your Real Name, it defeat the idea of
+                            anonymous
+                        </span>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
         );
     }
