@@ -10,20 +10,21 @@
         flex-direction: column;
         width: 10rem;
         background-color: rgb(153, 153, 153);
-        border-radius: 0.2rem;
+        border-radius: 0.5rem;
         position: absolute;
         margin-top: 3rem;
         display: flex;
         height: max-content;
         padding: 1rem;
         padding-top: 2rem;
+        font-size: 1.2rem;
 
         .user {
             flex-direction: column;
             background-color: transparent;
         }
         .update {
-            font-size: 0.5rem;
+            font-size: 0.8rem;
             color: #00f;
             cursor: pointer;
         }
