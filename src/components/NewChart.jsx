@@ -44,8 +44,6 @@ function NewChart() {
         localStorage.setItem("user", JSON.stringify(user));
     };
 
-    // analytics.logEvent(logEventFun("page_view", { page: "newchart" }));
-
     useEffect(() => {
         console.log(analytics && true);
         //check if userdata is in localstorage
