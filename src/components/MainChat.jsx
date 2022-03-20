@@ -74,6 +74,8 @@ function MainChat() {
         return (
             <div className={style.container}>
                 <div className={style.card}>
+                    <img src="/Nonymous.png" style={{ height: "5rem", width: "5rem" }} alt="logo" />
+
                     <h1 style={{ textAlign: "center" }}>
                         Welcome to Nonymous
                         <p style={{ fontSize: ".8rem", marginBottom: "2rem" }}>
@@ -104,6 +106,8 @@ function MainChat() {
     return (
         <div className={style.layout}>
             <header className={style.head}>
+                <img src="/Nonymous.png" style={{ height: "4rem", width: "4rem" }} alt="logo" />
+
                 <h2>
                     Nonymous
                     <p style={{ fontSize: "0.8rem" }}>feel free to say whatever you want, no one knows it is you</p>
