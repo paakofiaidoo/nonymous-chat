@@ -106,7 +106,7 @@ function NewChart() {
                 <h2>
                     Nonymous
                     <p style={{ fontSize: "0.8rem" }}>
-                        fell free to say whatever you want, know one knows it is
+                        feel free to say whatever you want, know one knows it is
                         you
                     </p>
                 </h2>
