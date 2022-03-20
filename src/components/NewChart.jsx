@@ -73,7 +73,7 @@ function NewChart() {
                 <h1 style={{ textAlign: "center" }}>
                     Welcome to Nonymous
                     <p style={{ fontSize: "1rem", marginBottom: "2rem" }}>
-                        fell free to say whatever you want, know one knows it is
+                        feel free to say whatever you want, know one knows it is
                         you
                     </p>
                 </h1>
