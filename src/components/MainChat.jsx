@@ -9,7 +9,7 @@ import { ref, set, push } from "firebase/database";
 import "firebase/analytics";
 import { setUserId } from "firebase/analytics";
 
-function NewChart() {
+function MainChat() {
     const [state, setState] = useState({
         user: {},
         hasUser: false,
@@ -111,7 +111,7 @@ function NewChart() {
                 <Menu {...{ ...state.user, removeUser }} />
             </header>
 
-            <main>
+            <main style={{ height: "100%" }}>
                 <Messages user={state.user}></Messages>
                 <Input {...{ user: state.user }}></Input>
             </main>
@@ -119,4 +119,4 @@ function NewChart() {
     );
 }
 
-export default NewChart;
+export default MainChat;

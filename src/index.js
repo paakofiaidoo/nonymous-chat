@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.scss';
 import './styles/normalize.css'
-import App from './components/NewChart';
+import App from './components/MainChat';
 
 
 ReactDOM.render(
