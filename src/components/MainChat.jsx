@@ -78,7 +78,7 @@ function MainChat() {
                             <br /> no one knows it is you
                         </p>
                     </h1>
-                    <h2>Create a username</h2>
+                    <h3>Create a username</h3>
 
                     <form onSubmit={onSubmit}>
                         <input
