@@ -27,7 +27,7 @@ function Input({ user }) {
             alert("Please enter a message");
         }
     };
-    
+
     return (
         <div className={style.input}>
             <div className={style.form}>
@@ -37,6 +37,7 @@ function Input({ user }) {
                     placeholder="Type a message..."
                     value={message}
                     maxLength={limit}
+                    spellCheck="true"
                     onChange={(e) => {
                         setMessage(e.target.value);
                     }}
