@@ -6,7 +6,7 @@ import { ref, set, push } from "firebase/database";
 function Input({ user }) {
     const [message, setMessage] = useState("");
     const MessageListRef = ref(db, "messages");
-    let limit = 3;
+    let limit = 300;
     const writeMessageData = (message) => {
         const newMessageRef = push(MessageListRef);
         set(newMessageRef, {
@@ -31,7 +31,7 @@ function Input({ user }) {
     return (
         <div className={style.input}>
             <div className={style.form}>
-                <input
+                <textarea
                     className={`${style.container} ${style.inputField}`}
                     type="text"
                     placeholder="Type a message..."
