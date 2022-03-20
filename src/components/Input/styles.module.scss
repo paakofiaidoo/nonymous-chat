@@ -5,56 +5,40 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    padding: 0.5rem;
+    padding-right: 1rem;
+
     .form {
         width: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .container {
+
+    &Field {
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.6;
+        letter-spacing: 0.1rem;
+        cursor: text;
         width: 90%;
         // background-color: rgba(153, 153, 153, 0.295);
         border-radius: 2rem;
         height: 100%;
         max-height: 10vh;
         padding: 1rem;
-        // padding-right: 0;
-        border: 1px solid #999;
         justify-content: space-between;
         align-items: center;
         overflow: hidden;
         margin: 0.5rem;
-        background: #e8e8e8;
+        background: #fff;
         border: 1px solid #e8e8e8;
         transition: all 0.3s;
         box-shadow: 6px 6px 12px #c5c5c5;
         // overflow-y: scroll;
         resize: none;
-    }
-
-    &Field {
-        position: relative;
-        width: 75%;
-        // height: 100%;
-        // padding: 0;
-        // margin: 0;
-        // margin-bottom: -0.9rem;
-        border: none;
         outline: none;
-        background: transparent;
-        font-size: 1rem;
-        font-weight: 300;
-        line-height: 1.6;
-        letter-spacing: 0.1rem;
-        cursor: text;
-        transition: all 0.3s ease-in-out;
-
-        // border-bottom: 1px solid #999;
-
         &:focus {
-            outline: none;
-            // border-bottom: 1px solid #999;
+            outline: 1px solid #666;
         }
         &::placeholder {
             color: #999;
