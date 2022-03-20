@@ -109,7 +109,7 @@ function MainChat() {
                 <h2>
                     Nonymous
                     <p style={{ fontSize: "0.8rem" }}>
-                        feel free to say whatever you want, know one knows it is
+                        feel free to say whatever you want, no one knows it is
                         you
                     </p>
                 </h2>
