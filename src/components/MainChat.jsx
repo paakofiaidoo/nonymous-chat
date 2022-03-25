@@ -21,7 +21,7 @@ function MainChat() {
     const MessageListRef = query(ref(db, "messages"), limitToLast(100));
 
     const removeUser = () => {
-        setState({
+        setUserState({
             user: {},
             hasUser: false,
         });
@@ -94,7 +94,6 @@ function MainChat() {
 
         return <SignUp onSubmit={onSubmit} />;
     }
-    console.log(reply);
 
     return (
         <div className={style.layout}>
