@@ -28,7 +28,7 @@ function Input({ user, setReply, reply }) {
                 .then((data) => {
                     time = new Date(data.datetime);
                 });
-            writeMessageData({ content: message, user, date: time, reply });
+            writeMessageData({ content: message, user, date: time, reply: reply ? reply.id : null });
             setMessage("");
             setReply(null);
             logEventFun("sent message");
@@ -38,10 +38,11 @@ function Input({ user, setReply, reply }) {
     };
     useEffect(() => {
         input.current.focus();
+        console.log(reply);
     }, [reply]);
 
     return (
-        <div className={style.input}>
+        <form className={style.input}>
             <div className={style.form}>
                 {!!reply && (
                     <div className={style.replyBox}>
@@ -100,7 +101,7 @@ function Input({ user, setReply, reply }) {
                 </div>
                 <span>Send</span>
             </button>
-        </div>
+        </form>
     );
 }
 
