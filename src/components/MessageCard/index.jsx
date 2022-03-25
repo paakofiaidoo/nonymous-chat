@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
-function MessageCard({ content, date, user, me, reply, setReply, id }) {
+function MessageCard({ content, date, user, me, reply, setReply, id, setCurrentID, currentID }) {
     let time = new Date(date);
     const getTimeDifference = (time) => {
         const currentTime = new Date().getTime();
@@ -28,8 +28,9 @@ function MessageCard({ content, date, user, me, reply, setReply, id }) {
         return `${out} ${minutes}m  ago`;
     };
     date = getTimeDifference(time);
+    // console.log(reply, content, "reply");
     return (
-        <div className={`${styles.messageBox}`}>
+        <div id={id} className={`${styles.messageBox} ${currentID === id ? styles.focus : ""}`}>
             <div className={`${styles.message} ${me ? styles.me : ""}`}>
                 <div className={styles.head}>
                     <h3 className={styles.username}>{user?.name}</h3>
@@ -37,12 +38,18 @@ function MessageCard({ content, date, user, me, reply, setReply, id }) {
                 </div>
                 <p className={styles.content}>
                     {!!reply && (
-                        <div className={styles.replyBox}>
+                        <a
+                            href={`#${reply.id}`}
+                            className={styles.replyBox}
+                            onClick={() => {
+                                setCurrentID(reply.id);
+                            }}
+                        >
                             <span style={{ color: reply.content ? "" : "red" }} className={styles.username}>
                                 {reply?.user.name}
                             </span>
                             <p className={styles.reply}>{reply.content ?? <span style={{ fontSize: "0.7rem", color: "red" }}>message lost</span>}</p>
-                        </div>
+                        </a>
                     )}
                     {content}
                 </p>
