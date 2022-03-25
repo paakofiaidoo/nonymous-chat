@@ -53,20 +53,28 @@ function MainChat() {
     const getMessages = () => {
         onValue(MessageListRef, (snapshot) => {
             let messagesObj = snapshot.val();
-            let messages = Object.entries(snapshot.val()).map((mess) => {
+            let messagesQuery = Object.entries(snapshot.val()).map((mess) => {
                 return {
                     id: mess[0],
                     ...mess[1],
                 };
             });
-            messages = messages.map((message) => {
+
+            // console.log(messagesQuery, messagesObj, "messagesObj");
+            messagesQuery = messagesQuery.map((message) => {
                 if (message.reply) {
-                    message.reply = messagesObj[message.reply.id] ? messagesObj[message.reply.id] : { ...message.reply, content: null };
+                    let tmp = messagesObj[message.reply] ? messagesObj[message.reply] : { ...message.reply, content: null, user: { name: "" } };
+                    let reply = {
+                        id: message.reply,
+                        reply: null,
+                        ...tmp,
+                    };
+                    message.reply = reply;
                 }
                 return message;
             });
-            // console.log(messages);
-            setMessages(messages);
+            // console.log(messagesQuery);
+            setMessages(messagesQuery);
             setState({ ...state, isLoading: false });
         });
     };
