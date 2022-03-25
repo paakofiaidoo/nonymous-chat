@@ -38,7 +38,7 @@ function Input({ user, setReply, reply }) {
     };
     useEffect(() => {
         input.current.focus();
-        console.log(reply);
+        // console.log(reply);
     }, [reply]);
 
     return (
