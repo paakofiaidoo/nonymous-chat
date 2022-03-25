@@ -99,7 +99,7 @@ function MainChat() {
             </header>
 
             <main style={{ height: "100%", position: "absolute", width: "98vw", height: "90vh", top: "10vh" }}>
-                <Messages style={{ height: reply ? "80%" : "85%" }} {...{ user: userState.user, messages, isLoading: state.isLoading, setReply }}></Messages>
+                <Messages style={{ height: reply ? "78%" : "83%" }} {...{ user: userState.user, messages, isLoading: state.isLoading, setReply }}></Messages>
                 <Input {...{ user: userState.user, setReply, reply }}></Input>
             </main>
         </div>
