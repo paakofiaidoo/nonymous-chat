@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import Loader from "../Loader";
 
 function Messages({ user, messages, isLoading, setReply, style }) {
+    const [currentID, setCurrentID] = useState("");
     const messagesBox = useRef();
     const scrollBottom = (e) => {
         e.scrollTop = e.scrollHeight;
@@ -15,7 +16,7 @@ function Messages({ user, messages, isLoading, setReply, style }) {
             scrollBottom(messagesBox.current);
         }
     });
-
+    // useEffect(() => {}, [currentID]);
     return (
         <div style={style} className={styles.messages} ref={messagesBox}>
             {isLoading ? (
@@ -28,6 +29,8 @@ function Messages({ user, messages, isLoading, setReply, style }) {
                                 ...message,
                                 me: user.id === message.user.id,
                                 setReply,
+                                setCurrentID,
+                                currentID,
                             }}
                             key={i}
                         />
