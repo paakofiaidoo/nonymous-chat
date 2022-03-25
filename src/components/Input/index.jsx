@@ -68,7 +68,7 @@ function Input({ user, setReply, reply }) {
                 <input
                     className={`${style.container} ${style.inputField}`}
                     type="text"
-                    placeholder="Type a message..."
+                    placeholder="try saying hello..."
                     value={message}
                     ref={input}
                     maxLength={limit}
