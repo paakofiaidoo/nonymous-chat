@@ -57,8 +57,7 @@ function MessageCard({ content, date, user, me, reply, setReply, id, setCurrentI
             <img
                 src="/reply.svg"
                 alt="relpy"
-                height={10}
-                width={10}
+                style={{ width: "1.25rem", height: "1.25rem", opacity: 0.7 }}
                 onClick={() => {
                     setReply({ content, date, user, id, reply: null });
                 }}
