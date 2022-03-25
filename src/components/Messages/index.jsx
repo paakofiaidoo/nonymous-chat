@@ -1,29 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import MessageCard from "../MessageCard";
 import styles from "./styles.module.scss";
-import { db } from "../../firebase";
-import {
-    ref,
-    onValue,
-    query,
-    orderByChild,
-    limitToLast,
-} from "firebase/database";
+
 import Loader from "../Loader";
 
-function Messages({ user }) {
-    const [messages, setMessages] = useState([]);
-    const [state, setState] = useState({
-        isLoading: true,
-    });
+function Messages({ user, messages, isLoading, setReply, style }) {
+    const [currentID, setCurrentID] = useState("");
     const messagesBox = useRef();
-    const MessageListRef = query(ref(db, "messages"), limitToLast(100));
-    useEffect(() => {
-        onValue(MessageListRef, (snapshot) => {
-            setMessages(Object.values(snapshot.val()));
-            setState({ ...state, isLoading: false });
-        });
-    }, []);
     const scrollBottom = (e) => {
         e.scrollTop = e.scrollHeight;
     };
@@ -33,10 +16,10 @@ function Messages({ user }) {
             scrollBottom(messagesBox.current);
         }
     });
-
+    // useEffect(() => {}, [currentID]);
     return (
-        <div className={styles.messages} ref={messagesBox}>
-            {state.isLoading ? (
+        <div style={style} className={styles.messages} ref={messagesBox}>
+            {isLoading ? (
                 <Loader />
             ) : (
                 messages.map((message, i) => {
@@ -45,6 +28,9 @@ function Messages({ user }) {
                             {...{
                                 ...message,
                                 me: user.id === message.user.id,
+                                setReply,
+                                setCurrentID,
+                                currentID,
                             }}
                             key={i}
                         />

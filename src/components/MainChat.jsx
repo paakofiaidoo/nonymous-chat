@@ -8,21 +8,18 @@ import { db, analytics, logEventFun } from "../firebase";
 import "firebase/analytics";
 import { setUserId } from "firebase/analytics";
 import { v4 as uuidv4 } from "uuid";
+import { SignUp } from "./SignUp";
+import { ref, onValue, query, orderByChild, limitToLast } from "firebase/database";
 
 function MainChat() {
     const [state, setState] = useState({
-        user: {},
-        hasUser: false,
+        isLoading: true,
     });
-    // const userListRef = ref(db, "users");
-    // const writeUserData = (name) => {
-    //     const newUserRef = push(userListRef);
-    //     set(newUserRef, {
-    //         username: name,
-    //     });
+    const [userState, setUserState] = useState({ user: {}, hasUser: false });
+    const [messages, setMessages] = useState([]);
+    const [reply, setReply] = useState(null);
+    const MessageListRef = query(ref(db, "messages"), limitToLast(100));
 
-    //     return newUserRef.key;
-    // };
     const removeUser = () => {
         setState({
             user: {},
@@ -39,26 +36,50 @@ function MainChat() {
         };
         logEventFun("new");
         setUserId(analytics, `${id}`);
-        setState({
-            user,
-            hasUser: true,
-        });
         localStorage.setItem("user", JSON.stringify(user));
+        setUserState({ user, hasUser: true });
+        getMessages(user);
     };
 
     useEffect(() => {
         console.log(analytics && true);
         //check if userdata is in localstorage
         if (JSON.parse(localStorage.getItem("user"))?.name) {
-            setState({
-                ...state,
-                user: JSON.parse(localStorage.getItem("user")),
-                hasUser: true,
-            });
+            setUserState({ user: JSON.parse(localStorage.getItem("user")), hasUser: true });
+            getMessages(JSON.parse(localStorage.getItem("user")));
         }
     }, []);
 
-    if (!state.hasUser) {
+    const getMessages = () => {
+        onValue(MessageListRef, (snapshot) => {
+            let messagesObj = snapshot.val();
+            let messagesQuery = Object.entries(snapshot.val()).map((mess) => {
+                return {
+                    id: mess[0],
+                    ...mess[1],
+                };
+            });
+
+            // console.log(messagesQuery, messagesObj, "messagesObj");
+            messagesQuery = messagesQuery.map((message) => {
+                if (message.reply) {
+                    let tmp = messagesObj[message.reply] ? messagesObj[message.reply] : { ...message.reply, content: null, user: { name: "" } };
+                    let reply = {
+                        id: message.reply,
+                        reply: null,
+                        ...tmp,
+                    };
+                    message.reply = reply;
+                }
+                return message;
+            });
+            // console.log(messagesQuery);
+            setMessages(messagesQuery);
+            setState({ ...state, isLoading: false });
+        });
+    };
+
+    if (!userState.hasUser) {
         const onSubmit = (e) => {
             e.preventDefault();
             const name = e.target.elements.name.value;
@@ -71,37 +92,9 @@ function MainChat() {
             }
         };
 
-        return (
-            <div className={style.container}>
-                <div className={style.card}>
-                    <img src="/Nonymous.png" style={{ height: "3rem", width: "5rem" }} alt="logo" />
-
-                    <h1 style={{ textAlign: "center" }}>
-                        Welcome to Nonymous
-                        <p style={{ fontSize: ".8rem", marginBottom: "2rem" }}>
-                            feel free to say whatever you want,
-                            <br /> no one knows it is you
-                        </p>
-                    </h1>
-                    <h3>Create a username</h3>
-
-                    <form onSubmit={onSubmit}>
-                        <input type="text" name="name" placeholder="Enter a username" />
-                        <span
-                            style={{
-                                fontSize: "0.8rem",
-                                marginTop: "0.3rem",
-                                marginBottom: "1rem",
-                            }}
-                        >
-                            Don't Use Your Real Name, it defeat the idea of anonymous
-                        </span>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        );
+        return <SignUp onSubmit={onSubmit} />;
     }
+    console.log(reply);
 
     return (
         <div className={style.layout}>
@@ -110,12 +103,12 @@ function MainChat() {
                     <img src="/Nonymous.png" style={{ height: "2rem", width: "4rem" }} alt="logo" />
                     <p style={{ fontSize: "0.8rem" }}>feel free to say whatever you want, no one knows it is you</p>
                 </span>
-                <Menu {...{ ...state.user, removeUser }} />
+                <Menu {...{ ...userState.user, removeUser }} />
             </header>
 
-            <main style={{ height: "100%" }}>
-                <Messages user={state.user}></Messages>
-                <Input {...{ user: state.user }}></Input>
+            <main style={{ height: "100%", position: "absolute", width: "98vw", height: "90vh", top: "10vh" }}>
+                <Messages style={{ height: reply ? "78%" : "83%" }} {...{ user: userState.user, messages, isLoading: state.isLoading, setReply }}></Messages>
+                <Input {...{ user: userState.user, setReply, reply }}></Input>
             </main>
         </div>
     );
